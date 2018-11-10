@@ -1,5 +1,5 @@
 # Project Name
-My Blog Journal
+My Blog Journal WebSite
 
 # Languages
 1) Front End => ( HTML - CSS - JavaScript )
