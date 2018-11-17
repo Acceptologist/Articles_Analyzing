@@ -1,0 +1,14 @@
+{% load static %}
+<header >
+
+    {% include init.NavBar %}
+
+    <div style="display: inline-block;margin: 5 5 5 5;padding: 5 5 5 5;">
+		<input onmouseenter="Show();" type="image"
+				src="{% static init.OfflineUsers %}"
+				width="30" height="30">
+
+        {% include init.UserNotLoggedHeader %}
+	</div>
+	
+</header>

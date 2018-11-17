@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE >
+<html>
+<head>
+	<title>{{ title }}</title>
+
+	<link rel="stylesheet" type="text/css" href="{% static init.HeaderCSS %}">
+	<link rel="stylesheet" type="text/css" href="{% static init.CenterCSS %}">
+	<link rel="stylesheet" type="text/css" href="{% static init.FooterCSS %}">
+    <link rel="icon" type="image/JPG" href="{% static init.LOGO %}">
+
+    <script src="{% static init.JQueryScript %}"></script>
+    <script src="{% static init.DropBoxScript %}"></script>
+    {% block header_scripts_and_style %}
+    {% endblock %}
+</head>
+
+<body>
+
+    {% block header %}
+    {% endblock %}
+
+	<section >
+        {% block section %}
+        {% endblock %}
+    </section>
+
+    <footer>
+        <div>
+            <a href="" >Blog Journal</a>
+            <p class="P">&copy; 2018 Project Team</p>
+        </div>
+        <div>
+            <p>Services</p>
+            <a href="">Help Center</a>
+            <a href="">Privacy Policy</a>
+        </div>
+        <div>
+            <p class='P'>Contact Email</p>
+            <p class='P'>abdoaslam000@gmail.com</p>
+        </div>
+    </footer>
+
+    {% block footer_scripts %}
+    {% endblock %}
+</body>
+</html>

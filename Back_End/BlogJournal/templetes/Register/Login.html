@@ -1,0 +1,69 @@
+{% extends init.Base %}
+
+<!-- Header Scripts and style -->
+<!--  -->
+<!--  -->
+<!--  -->
+{% block header_scripts_and_style %}
+
+{% endblock %}
+
+<!-- Headers -->
+<!--  -->
+<!--  -->
+<!--  -->
+
+{% block header %}
+    {% include init.NotLoggedHeaders %}
+{% endblock %}
+
+<!-- Section -->
+<!--  -->
+<!--  -->
+<!--  -->
+
+{% block section %}
+    <div class ='Title'>
+        Log in
+    </div>
+
+    {% include init.MessageBox %}
+
+    <form id='LogForm' method="post" enctype="multipart/form-data"
+        action="{{ init.Login }}">
+
+        {% csrf_token %}
+
+        <div>
+            <input class='Input_Data' onfocus="Focus(this);"
+                onblur="Blur(this);" type="text" id='Email'
+                required name="E" placeholder="Enter Your Email">
+        </div>
+
+        <div>
+            <input class='Input_Data' onfocus="Focus(this);"
+                onblur="Blur(this);" id='Password' type="Password"
+                name="P" placeholder="Enter Password" required>
+        </div>
+
+        <div>
+            <input type="submit" value="Log in" class='Button'>
+        </div>
+
+        <div>
+            <a href="{{ init.SignUP }}">Create New Acount</a>
+        </div>
+    </form>
+{% endblock %}
+
+<!-- Footer Scripts -->
+<!--  -->
+<!--  -->
+<!--  -->
+
+{% block footer_scripts %}
+    <script type="text/javascript">
+        var Email_Len = {{ init.Email_Len }};
+        var Password_Len = {{ init.Password_Len }};
+    </script>
+{% endblock %}
