@@ -1,0 +1,21 @@
+{% extends init.Base %}
+{% load static %}
+
+
+{% block header_scripts_and_style %}
+{% endblock %}
+
+
+{% block header %}
+    {% include init.LoggedHeaders %}
+{% endblock %}
+
+
+{% block section %}
+    <p style="margin-top: 200px;">You Must Log Out To Enter This Page</p>
+    <a href='{{ init.BackEnd_LogOut }}'>Enter The Link To Log Out</a>
+{% endblock %}
+
+
+{% block footer_scripts %}
+{% endblock %}

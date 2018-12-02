@@ -1,33 +1,26 @@
 {% extends init.Base %}
+{% load static %}
 
-<!-- Header Scripts and style -->
-<!--  -->
-<!--  -->
-<!--  -->
+
 {% block header_scripts_and_style %}
+    <!-- Needed Scripts -->
+    <script src="{% static init.CheckLenScript %}"></script>
+    <script src="{% static init.CheckinputLenScript %}"></script>
 
+    <!-- Main Script -->
+    <script src="{% static init.LoginScript %}"></script>
 {% endblock %}
 
-<!-- Headers -->
-<!--  -->
-<!--  -->
-<!--  -->
 
 {% block header %}
     {% include init.NotLoggedHeaders %}
 {% endblock %}
 
-<!-- Section -->
-<!--  -->
-<!--  -->
-<!--  -->
 
 {% block section %}
     <div class ='Title'>
         Log in
     </div>
-
-    {% include init.MessageBox %}
 
     <form id='LogForm' method="post" enctype="multipart/form-data"
         action="{{ init.Login }}">
@@ -36,14 +29,19 @@
 
         <div>
             <input class='Input_Data' onfocus="Focus(this);"
-                onblur="Blur(this);" type="text" id='Email'
-                required name="E" placeholder="Enter Your Email">
+                   onblur="Blur(this);" type="text" id='Email'
+                   oninput="CheckinputLen(this, Email_Len)"
+                   required name="E" placeholder="Enter Your Email"
+                    {% if Wrong == 'Wrong Password' %}
+                        value='{{ Email }}'
+                    {% endif%}>
         </div>
 
         <div>
             <input class='Input_Data' onfocus="Focus(this);"
-                onblur="Blur(this);" id='Password' type="Password"
-                name="P" placeholder="Enter Password" required>
+                   onblur="Blur(this);" id='Password' type="Password"
+                   oninput="CheckinputLen(this, Password_Len)"
+                   name="P" placeholder="Enter Password" required>
         </div>
 
         <div>
@@ -51,19 +49,23 @@
         </div>
 
         <div>
-            <a href="{{ init.SignUP }}">Create New Acount</a>
+            <a href="{{ init.SignUP }}">Create New Account</a>
         </div>
     </form>
 {% endblock %}
 
-<!-- Footer Scripts -->
-<!--  -->
-<!--  -->
-<!--  -->
 
 {% block footer_scripts %}
     <script type="text/javascript">
         var Email_Len = {{ init.Email_Len }};
         var Password_Len = {{ init.Password_Len }};
+    </script>
+
+    <script type="text/javascript">
+        {% if Wrong == 'Not Found' %}
+            $('#Email').css('border-color','red');
+        {% elif Wrong == 'Wrong Password' %}
+            $('#Password').css('border-color','red');
+        {% endif %}
     </script>
 {% endblock %}

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+from Python import Sittings
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -31,7 +32,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    #'Register.apps.RegisterConfig'
+    'Register.apps.RegisterConfig',
+    'BackEnd.apps.BackEndConfig',
+    'Blogs.apps.BlogsConfig',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -56,7 +60,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            'C://Users/ITC/PycharmProjects/BlogJournal/templetes'
+            Sittings.TEMPLATES_DIRS
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -127,5 +131,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    'C://Users/ITC/PycharmProjects/BlogJournal/static'
+    Sittings.STATICFILES_DIRS
 ]

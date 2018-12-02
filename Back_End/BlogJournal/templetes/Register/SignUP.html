@@ -10,10 +10,19 @@
             margin: 0 0 0 0;
         }
     </style>
+    <!-- Error Script -->
+    <script src="{% static init.ErrorFunctionScript %}"></script>
+
+    <!-- Message Script -->
+    <script src="{% static init.TrigerMessageScript %}"></script>
+
+    <!-- Needed Scripts -->
     <script src="{% static init.CheckLenScript %}"></script>
     <script src="{% static init.CheckinputLenScript %}"></script>
     <script src="{% static init.CheckPatternScript %}"></script>
     <script src="{% static init.ConfirmPasswordScript %}"></script>
+
+    <!-- Main Script -->
     <script src="{% static init.SignUPScript %}"></script>
 {% endblock %}
 
@@ -24,7 +33,6 @@
 {% block section %}
     <div class = 'Title'>
         Sign UP
-        {{ request }}
     </div>
 
     {% include init.MessageBox %}
@@ -39,29 +47,37 @@
             <div class="Block">
                 <input class="Input_Data" onfocus="Focus(this);" id='Name' name="N"
                         oninput="CheckinputLen(this, Name_Len)" type="text"
-                        onblur="Blur(this);" required placeholder="Enter Your Name">
+                        onblur="Blur(this);" required placeholder="Enter Your Name"
+                        {% if Wrong == 'Found' %}
+                            value='{{ Name }}'
+                        {% endif%}>
             </div>
 
             <div class="Block">
                 <input class="Input_Data" onfocus="Focus(this);" onchange="CheckEmail()"
                     onblur="Blur(this);" type="text" id='Email' name="E"
-                    required placeholder="Enter Your Email">
+                    required placeholder="Enter Your Email"
+                    {% if Wrong == 'Found' %}
+                        value='{{ Email }}'
+                    {% endif%}>
             </div>
 
             <div class="Block">
                 <input class="Input_Data" onfocus="Focus(this);"
-                    onblur="Blur(this);" id='Password' type="password"
-                     required name="P" placeholder="Enter Your Password">
+                       onblur="Blur(this);" id='Password' type="password"
+                       oninput="CheckinputLen(this, Password_Len)"
+                       required name="P" placeholder="Enter Your Password">
             </div>
 
             <div class="Block">
                 <input class="Input_Data" onfocus="Focus(this);"
-                    onblur="Blur(this);" id='ConPassword' type="password"
-                     required placeholder="Re-Enter Password">
+                       onblur="Blur(this);" id='ConPassword' type="password"
+                       oninput="CheckinputLen(this, Password_Len)"
+                       required placeholder="Re-Enter Password">
             </div>
 
             <div>
-                <input type="submit" value="Log in" class='Button'>
+                <input type="submit" value="Sign UP" class='Button'>
             </div>
         </div>
     </form>
@@ -69,11 +85,30 @@
 
 {% block footer_scripts %}
     <script type="text/javascript">
-        var CheckPage = '';
-        var MyPage = '{{ init.SignUP }}';
+        var CheckPage = '{{ init.BackEnd_ChekcUser }}';
 
         var Name_Len = {{ init.Name_Len }};
         var Email_Len = {{ init.Email_Len }};
         var Password_Len = {{ init.Password_Len }};
+
+        var Token = $("input[name='csrfmiddlewaretoken']").val();
+    </script>
+
+    <script type="text/javascript">
+        {% if Wrong == 'Found' %}
+            $('#Email').css('border-color','red');
+        {% endif %}
+    </script>
+
+    <script type="text/javascript">
+        // Errors
+        var Ajax_Error = {}, JSON_Error = {};
+        Ajax_Error['API'] = {{ Ajax_API }};
+        Ajax_Error['Type'] = 'Ajax Error';
+        Ajax_Error['Message'] = '{{ Ajax_Message }}';
+
+        JSON_Error['API'] = {{ JSON_API }};
+        JSON_Error['Type'] = 'JSON Error';
+        JSON_Error['Message'] = '{{ JSON_Message }}';
     </script>
 {% endblock %}

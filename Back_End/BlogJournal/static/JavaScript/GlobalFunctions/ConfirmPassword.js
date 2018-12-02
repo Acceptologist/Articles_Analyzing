@@ -3,14 +3,13 @@
         javascript page     =>  ConfirmPassword.js
         init name           =>  ConfirmPasswordScript
 
-    -The Scripts it Depends On (init Name) :
+    - The Scripts it Depends On (init Name) :
         JQueryScript
 
     - Data Needed :
         id  => #Password
         id  => #ConPassword
 */
-
 function CheckPassword(){
     Pass = $('#Password').val();
     ConPass = $('#ConPassword').val();

@@ -7,8 +7,6 @@
 		JQueryScript
 		CheckLenScript
 */
-
-// Functions For input 
 function CheckinputLen(The_Object, Len){
     if ( $('#'+The_Object.id).val().length == 0 )
         $('#'+The_Object.id).css('border-color', '#666866');

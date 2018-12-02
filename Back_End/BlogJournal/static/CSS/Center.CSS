@@ -81,7 +81,7 @@ section div{
 
 .Div_Show_More{
     text-align: center;
-    border-color: #0DBC77;
+    border-color: #B9C8C2;
     border-width: 2px;
     border-radius: 2px;
     border-style: solid;
@@ -92,5 +92,6 @@ section div{
 }
 .Show_More{
     color: #4E464D;
-    cursor:pointer;
+    cursor: pointer;
+    width: auto;
 }
