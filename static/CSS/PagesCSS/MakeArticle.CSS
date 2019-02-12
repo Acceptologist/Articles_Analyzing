@@ -1,0 +1,35 @@
+#Link{
+	margin-top: 20px;
+}
+#Link a{
+	font-size: 25px;
+}
+#Link input{
+	margin-top: 50px;
+}
+form{
+	text-align: left;
+}
+form div{
+	margin-top: 30px;
+}
+form p{
+	display: inline-block;
+}
+form div div{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding: 0px;
+}
+form input[type='submit']{
+	width: 30%;
+}
+form input[type='text']{
+	width: 60%;
+}
+textarea{
+	width: 900px;
+	height: 400px;
+	background-color: #FFF;
+	border-color: #7c6d6d;
+}

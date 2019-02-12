@@ -1,0 +1,58 @@
+{% extends init.Base %}
+{% load static %}
+{% load UserFilters %}
+{% load ArticlesFilters %}
+
+
+{% block header_scripts_and_style %}
+    <link rel="stylesheet" type="text/css"
+                href="{% static init.PagesCSS %}MyProfile.CSS">
+
+    <script src="{% static init.TrigerMessageScript %}"></script>
+    <script src="{% static init.ErrorFunctionScript %}"></script>
+
+    <script src="{% static init.PagesScripts %}ArticlesScript.js"></script>
+{% endblock %}
+
+
+{% block section %}
+
+    {% csrf_token %}
+
+    <div class="info">
+
+        <input type="image" src="{% static User|GetUserPicture %}">
+        <p><span>ID</span> : {{ User|GetUserID }}</p>
+        <p><span>Name</span> : {{ User|GetUserName }}</p>
+        <p><span>Likes : </span> {{ User|GetUserLikes }}</p>
+        <p><span>DisLikes : </span> {{ User|GetUserDisLikes }}</p>
+        <p><span>Comments : </span> {{ User|GetUserComments }}</p>
+        <p><span>Number Of Posts</span> = {{ User|GetUserArticlesNumber }}</p>
+
+    </div>
+
+    <div class="Posts">
+        
+        {% for Article in Articles %}
+            {% autoescape off %}
+                {{ Article|GetPost }}
+            {% endautoescape %}
+        {% endfor %}
+
+        {% autoescape off %}
+            {{ Articles|CheckPostsNumber }}
+        {% endautoescape %}
+    </div>
+
+{% endblock %}
+
+
+{% block footer_scripts %}
+    <script type="text/javascript">
+        var Posts_Number = 5;
+        
+        var Token = $("input[name='csrfmiddlewaretoken']").val();
+
+        var GetPostsPage = '{{ init.GetPosts }}'
+    </script>
+{% endblock %}

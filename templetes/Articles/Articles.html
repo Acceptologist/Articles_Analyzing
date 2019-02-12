@@ -1,0 +1,137 @@
+{% extends init.Base %}
+{% load static %}
+{% load ArticlesFilters %}
+
+
+{% block header_scripts_and_style %}
+    <link rel="stylesheet" type="text/css"
+                    href="{% static init.PagesCSS %}Articles.CSS">
+
+    <script src="{% static init.TrigerMessageScript %}"></script>
+    <script src="{% static init.ErrorFunctionScript %}"></script>
+
+    <script src="{% static init.PagesScripts %}ArticlesScript.js"></script>
+{% endblock %}
+
+
+{% block section %}
+    <div style="text-align: left;display: inline-block;margin: 0px;padding: 0px;
+        vertical-align: top;margin-left: 10px;width: 25%">
+        
+        <div style="text-align: left;border-bottom-color: #454545;border-bottom-style: solid;border-bottom-width: 1px;">
+            <p>Search By Tags</p>
+            <input type="text" name="" placeholder="Enter Tags Here"
+                style="width: 100%">
+        </div>
+
+        <div style="text-align: left;border-bottom-color: #454545;border-bottom-style: solid;border-bottom-width: 1px;">
+            <p>Search By Openion</p>
+            <input type="checkbox" name=""> Positive
+            <input type="checkbox" name=""> Negative
+        </div>
+
+        <div style="text-align: left;border-bottom-color: #454545;border-bottom-style: solid;border-bottom-width: 1px;">
+            <p>Search By Words</p>
+            <input type="text" name="" placeholder="Enter Tags Here"
+                style="width: 100%">
+        </div>
+
+        <div style="text-align: left;border-bottom-color: #454545;border-bottom-style: solid;border-bottom-width: 1px;">
+            <p>Search By Date</p>
+            <input type="text" name="" placeholder="Enter Tag Here"
+                style="width: 60%">
+
+            <input type="text" name="" placeholder="Enter Tag Here"
+                style="width: 60%">
+        </div>
+    </div>
+
+    <div class="Articles" style="display: inline-block;">
+        {% csrf_token %}
+
+        {% for Article in Articles %}
+            {% autoescape off %}
+                {{ Article|GetPost }}
+            {% endautoescape %}
+        {% endfor %}
+
+        <div class="Article">
+
+            <div class="Article_Header">
+
+                <div>
+                    <a href="{{ init.User }}1">
+                        <input type="image" src="{% static init.OnlineUser %}">
+                    </a>
+                </div>
+
+                <div>
+                    <p><strong>By </strong> : Hady</p>
+                    
+                    <p><strong>Date </strong> : 5/10/2018</p>
+                    
+                </div>
+
+                <script type="text/javascript">
+                    function MakeSlide(id){
+                        $( "#DropDownBox"+id ).toggle( "slide" );
+                    }
+
+                    function Edit(id){
+                        confirm('Do You Want To Edit This Post');
+                    }
+
+                    function Delete(id){
+                        confirm('Do You Want To Delete This Post');
+                    }
+                </script>
+
+                <div class="Options">
+                    <input type="image" src="{% static init.DropDown %}"
+                            id="SSS" onclick="MakeSlide(0);">
+
+                    <div id="DropDownBox0">
+                        <a onclick="Edit(0)" id="Edit">Edit</a>
+                        <a onclick="Delete(0)" id="Delete">Delete</a>
+                    </div>
+                </div>
+
+            </div>
+            <p class="Article_Title"><strong>Title </strong> : Hey i Am Here</p>
+            <p class="Article_Tags"><strong>Tags : </strong>
+                <a><strong>#Tags One</strong></a>
+                <a><strong>#Tags One</strong></a>
+                <a><strong>#Tags One</strong></a>
+                <a><strong>#Tags One</strong></a>
+            </p>
+
+            <div>
+                <p>Hello From Article This is Hady Eslam MohamedMohamedMohamedMohamedMohamedMohamedMohamedMohamedMohamedMohamedMohamedMohamedMohamedMohamedMohamedMohamedMohamedMohamedMohamedMohamedMohamed</p>
+            </div>
+            
+            <div class="Article_Link">
+                <a href="{{ init.Article }}1">The Link To Full Article</a>
+            </div>
+            <div class="Article_Statics">
+                <p><span>Likes </span> 0 </p>
+                <p><span>DisLikes </span> 0 </p>
+                <p><span>Comments </span> 0 </p>
+            </div>
+        </div>
+
+        {% autoescape off %}
+            {{ Articles|CheckPostsNumber }}
+        {% endautoescape %}
+    </div>
+{% endblock %}
+
+
+{% block footer_scripts %}
+    <script>
+        var Posts_Number = 5;
+        
+        var Token = $("input[name='csrfmiddlewaretoken']").val();
+
+        var GetPostsPage = '{{ init.GetPosts }}'
+    </script>
+{% endblock %}

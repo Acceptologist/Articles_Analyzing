@@ -1,0 +1,16 @@
+{% extends init.Base %}
+{% load static %}
+
+
+{% block header_scripts_and_style %}
+    <link rel="stylesheet" type="text/css" href="{% static init.PagesCSS %}404.CSS">
+{% endblock %}
+
+
+{% block section %}
+	<div class='Title'>
+		Page Not Found
+	</div>
+
+	<p>We Are Sorry To Say This Page Not Found</p>
+{% endblock %}

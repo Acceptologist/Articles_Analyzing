@@ -1,0 +1,21 @@
+{% load static %}
+<header >
+
+    {% include init.NavBar %}
+
+	<div class="Profile_Picture">
+		<input onclick="ShowProfileMenu();" type="image" width="30" height="30"
+		    src="{% if Session == 'Found' %}
+		            {% static Session_Picture %}
+		         {% else %}
+		            {% static init.OfflineUser %}
+                 {% endif %}">
+
+			{% if Session == 'Found' %}
+				{% include init.UserLogged %}
+			{% else %}
+				{% include init.UserNotLogged %}
+			{% endif %}
+	</div>
+	
+</header>

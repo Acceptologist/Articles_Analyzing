@@ -1,0 +1,17 @@
+{% extends init.Base %}
+{% load static %}
+
+
+{% block header_scripts_and_style %}
+    <link rel="stylesheet" type="text/css" href="{% static init.PagesCSS %}Error.CSS">
+{% endblock %}
+
+
+{% block section %}
+	<div class='Title'>
+		Error
+	</div>
+
+	<p>Error Occured When Proccessing Data</p>
+	<p>Go To Main Page</p>
+{% endblock %}

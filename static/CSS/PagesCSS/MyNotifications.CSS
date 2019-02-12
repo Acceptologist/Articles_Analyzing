@@ -1,0 +1,40 @@
+.Notifications div{
+	text-align: left;
+
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+    border-bottom-color: #454545;
+}
+
+.Notifications div div{
+	padding: 5px;
+	margin: 0px;
+	border: none !important;
+}
+
+.Notification{
+	font-size: 17px;
+}
+.Notifications a{
+	display: inline-block;
+}
+.Notification div div{
+	display: inline-block;
+	font-size: 15px;
+	vertical-align: top;
+}
+.Notification input[type = 'image']{
+	width: 80px;
+	height: 80px;
+}
+
+.DidNotSeeNotification{
+	background-color: #c7d3c4;
+	border-style: solid;
+	border-radius: 5px;
+	border-color: #c7d3c4;
+	border-width: 1px;
+}
+.Show_More_Div{
+	margin-top: 60px;
+}

@@ -1,0 +1,93 @@
+{% extends init.Base %}
+{% load static %}
+
+
+{% block header_scripts_and_style %}
+    <link rel="stylesheet" type="text/css"
+        href="{% static init.PagesCSS %}Settings.CSS">
+
+    <!-- Needed Scripts -->
+    <script src="{% static init.TrigerFormScript %}"></script>
+    
+    <!-- Message Script -->
+    <script src="{% static init.TrigerMessageScript %}"></script>
+
+    <!-- Error Script -->
+    <script src="{% static init.ErrorFunctionScript %}"></script>
+
+    {% if Section == 'Picture' %}
+        <script src="{% static init.AddPictureScript %}"></script>
+        <script src="{% static init.PagesScripts %}Settings_PictureScript.js"></script>
+    {% elif Section == 'Password' %}
+        <script src="{% static init.CheckLenScript %}"></script>
+        <script src="{% static init.CheckinputLenScript %}"></script>
+
+        <script src="{% static init.CheckPasswordScript %}"></script>
+        
+        <script src="{% static init.PagesScripts %}Settings_PasswordScript.js"></script>
+    {% elif Section == 'Name' %}
+        <script src="{% static init.CheckLenScript %}"></script>
+        <script src="{% static init.CheckinputLenScript %}"></script>
+
+        <script src="{% static init.CheckNameScript %}"></script>
+        
+        <script src="{% static init.PagesScripts %}Settings_NameScript.js"></script>
+    {% elif Section == 'DeActivate' %}
+        <script src="{% static init.PagesScripts %}Settings_DeActivateScript.js">
+        </script>
+    {% endif %}
+{% endblock %}
+
+
+{% block section %}
+
+    <div class="DivLeft" >
+            
+        <a href="{{ init.Settings }}">Change Profile Picture</a>
+        <a href="{{ init.Settings }}/Name">Change Name</a>
+        <a href="{{ init.Settings }}/Password">Change Password</a>
+        <a href="{{ init.Settings }}/DeActivate">De Activate Account</a>
+
+    </div>
+
+    <div class="Div1">
+    {% if Section == 'Picture' %}
+        {% include init.Settings_Picture_Template %}
+    {% elif Section == 'Name' %}
+        {% include init.Settings_Name_Template %}
+    {% elif Section == 'Password' %}
+        {% include init.Settings_Password_Template %}
+    {% elif Section == 'DeActivate' %}
+        {% include init.Settings_DeActivate_Template %}
+    {% endif %}
+    </div>
+
+{% endblock %}
+
+
+{% block footer_scripts %}
+    <script type="text/javascript">
+        var Name_Len = {{ init.Name_Len }};
+        var Password_Len = {{ init.Password_Len }};
+
+        var CheckNamePage = '{{ init.CheckName }}';
+        var MyPage = '{{ init.Settings }}';
+        var Token = $("input[name='csrfmiddlewaretoken']").val();
+    </script>
+
+    <script type="text/javascript">
+
+        {% if Result == 'NameDone' %}
+            TriggerMessage(3000, '#53A01A', '<p>Name Changed</p>');
+        {% elif Result == 'ReservedName' %}
+            $('#Name').css('border-color', 'red');
+        {% elif Result == 'PictureDone' %}
+            TriggerMessage(3000, '#53A01A', '<p>Picture Changed</p>');
+        {% elif Result == 'PasswordDone' %}
+            TriggerMessage(3000, '#53A01A', '<p>Password Changed</p>');
+        {% elif Result == 'WrongPassword' %}
+            $('#OldPassword').css('border-color', 'red');
+        {% endif %}
+
+    </script>
+{% endblock %}

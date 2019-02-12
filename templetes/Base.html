@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE >
+<html>
+<head>
+	<title>{{ Title }}</title>
+
+	<link rel="stylesheet" type="text/css" href="{% static init.AllPagesCSS %}">
+
+    <link rel="icon" type="image/JPG" href="{% static init.LOGO %}">
+
+    <script src="{% static init.JQueryScript %}"></script>
+    <script src="{% static init.DropBoxScript %}"></script>
+    {% block header_scripts_and_style %}
+    {% endblock %}
+</head>
+
+<body>
+
+    {% include init.Header %}
+
+    <section>
+        {% include init.MessageBox %}
+        
+        {% block section %}
+        {% endblock %}
+    </section>
+
+    <footer>
+        <div>
+            <a href="{{ init.Articles }}">Articles Journal</a>
+            <p>&copy; 2018 Project Team</p>
+        </div>
+
+        <div style="text-align: left;">
+            <p>Services</p>
+            <a href="{{ init.Help }}">Help Center</a>
+            <a href="{{ init.Policy }}">Privacy Policy</a>
+        </div>
+        
+        <div>
+            <p>Contact Email</p>
+            <p>abdoaslam000@gmail.com</p>
+        </div>
+    </footer>
+
+    {% block footer_scripts %}
+    {% endblock %}
+</body>
+</html>

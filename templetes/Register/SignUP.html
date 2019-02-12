@@ -1,0 +1,88 @@
+{% extends init.Base %}
+{% load static %}
+
+{% block header_scripts_and_style %}
+    <!-- Needed Scripts -->
+    <script src="{% static init.CheckLenScript %}"></script>
+    <script src="{% static init.CheckinputLenScript %}"></script>
+
+    <script src="{% static init.CheckPatternScript %}"></script>
+    <script src="{% static init.CheckPasswordScript %}"></script>
+
+    <script src="{% static init.CheckNameScript %}"></script>
+
+    <!-- Message Script -->
+    <script src="{% static init.TrigerMessageScript %}"></script>
+
+    <!-- Error Script -->
+    <script src="{% static init.ErrorFunctionScript %}"></script>
+
+    <!-- Main Script -->
+    <script src="{% static init.PagesScripts %}SignUPScript.js"></script>
+{% endblock %}
+
+
+{% block section %}
+
+    <div class="Title">
+        Sign UP Form
+    </div>
+
+    <form id='SignForm' method="post" enctype="multipart/form-data"
+            action="{{ init.SignUP }}">
+
+        {% csrf_token %}
+
+        <div>
+            
+            <div>
+                <input oninput="CheckName();" type="text" id='Name' name="Name"
+                    required placeholder="Enter Your Name" value="{{ Name }}">
+            </div>
+
+            <div>
+                <input onchange="CheckEmail();" type="text" id='Email' name="Email"
+                    required placeholder="Enter Your Email" value="{{ Email }}">
+            </div>
+
+            <div>
+                <input id='Password' type="password" placeholder="Enter Your Password"
+                    oninput="CheckinputLen(this.id, Password_Len);"
+                    required name="Password" value="{{ Password }}">
+
+            </div>
+
+            <div>
+                <input id='ConPassword' type="password" placeholder="Re-Enter Password"
+                    required oninput="CheckinputLen(this.id, Password_Len);">
+            </div>
+        </div>
+        
+        <div>
+            <div>
+                <input type="submit" value="Sign UP">
+            </div>
+        </div>
+    </form>
+{% endblock %}
+
+{% block footer_scripts %}
+    <script type="text/javascript">
+        var CheckNamePage = '{{ init.CheckName }}';
+        var CheckEmailPage = '{{ init.CheckEmail }}'
+
+        var Name_Len = {{ init.Name_Len }};
+        var Email_Len = {{ init.Email_Len }};
+        var Password_Len = {{ init.Password_Len }};
+
+        var Token = $("input[name='csrfmiddlewaretoken']").val();
+    </script>
+
+    <script type="text/javascript">
+        {% if Wrong == 'Name Found'%}
+            $('#Name').css('border-color', 'red');
+        {% elif Wrong == 'Email Found'%}
+            $('#Email').css('border-color', 'red');
+        {% endif %}
+    </script>
+{% endblock %}

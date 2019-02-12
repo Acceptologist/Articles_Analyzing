@@ -1,0 +1,14 @@
+{% extends init.Base %}
+{% load static %}
+
+{% block section %}
+    <div class ='Title'>
+        Privacy Policy
+    </div>
+
+    {% if Session == 'Found' %}
+    	<p>True</p>
+    {% else %}
+    	<p>False</p>
+    {% endif %}
+{% endblock %}

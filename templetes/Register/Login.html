@@ -1,0 +1,60 @@
+{% extends init.Base %}
+{% load static %}
+
+
+{% block header_scripts_and_style %}
+    <!-- Needed Scripts -->
+    <script src="{% static init.CheckLenScript %}"></script>
+    <script src="{% static init.CheckinputLenScript %}"></script>
+
+    <!-- Main Script -->
+    <script src="{% static init.PagesScripts %}LoginScript.js"></script>
+{% endblock %}
+
+
+{% block section %}
+    <div class ='Title'>
+        Log in
+    </div>
+
+    <form id='LogForm' method="post" enctype="multipart/form-data" 
+            action="{{ init.Login }}">
+
+        {% csrf_token %}
+
+        <div>
+            <input type="text" id='Email' placeholder="Enter Your Email"
+                   oninput="CheckinputLen(this.id, Email_Len)" required name="Email"
+                    value='{{ Email }}'>
+        </div>
+
+        <div>
+            <input id='Password' type="Password" placeholder="Enter Password" 
+                name="Password" required oninput="CheckinputLen(this.id, Password_Len)">
+        </div>
+
+        <div>
+            <input type="submit" value="Log in">
+        </div>
+
+        <div>
+            <a href="{{ init.SignUP }}">Create New Account</a>
+        </div>
+    </form>
+{% endblock %}
+
+
+{% block footer_scripts %}
+    <script type="text/javascript">
+        var Email_Len = {{ init.Email_Len }};
+        var Password_Len = {{ init.Password_Len }};
+    </script>
+
+    <script type="text/javascript">
+        {% if Wrong == 'Email Not Found' %}
+            $('#Email').css('border-color','red');
+        {% elif Wrong == 'Wrong Password' %}
+            $('#Password').css('border-color','red');
+        {% endif %}
+    </script>
+{% endblock %}

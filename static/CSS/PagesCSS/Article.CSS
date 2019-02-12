@@ -1,0 +1,77 @@
+.Comments a, .WriteComment a, .Comments div div, .Article_Header div{
+    display: inline-block;
+}
+.WriteComment a input[type = 'image'], .Comments input, .Comment_Text,
+.Article_Header, .Post, .WriteComment, .Post_Statics{
+    padding: 0px;
+    margin: 0px;
+}
+.WriteComment a, .Comments input, .WriteComment input[type = 'image'],
+.Article_Header div input{
+    vertical-align: bottom;
+}
+.WriteComment input[type = 'image'], .Comments input, .Article_Header div input{
+    width: 80px;
+    height: 80px;
+}
+.Analyzer, .WriteComment{
+    border-width: 1px;
+    border-style: solid;
+    border-color: #454545;
+    border-radius: 5px;
+}
+.Comments_Div, .Article{
+    text-align: left;
+}
+.Article, .Post{
+    padding-left: 3%
+}
+.Post, .Analyzer{
+    width: 90%;
+}
+.Article_Header{
+    font-size: 17px;
+}
+.Post{
+    word-break: break-all;
+    padding: 5px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.Analyzer{
+    font-size: 18px;
+    background-color: #C5EDA8;
+}
+.Comments{
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #454545;
+}
+.Post_Statics{
+    padding-top: 70px;
+}
+.Comments{
+    font-size: 15px;
+}
+.Post_Statics input{
+    width: 10%;
+}
+.WriteComment{
+    height: 100px;
+}
+.WriteComment textarea{
+    width: 740px;
+}
+.Comment_Text{
+    margin-left: 80px;
+}
+.Post_Statics span{
+    margin-left: 20px;
+}
+.Article_Title{
+    font-size: 20px !important;
+}
+.Tags{
+    display: inline-block;
+    text-decoration: underline;
+}

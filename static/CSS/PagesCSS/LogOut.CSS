@@ -1,0 +1,7 @@
+section a, section p{
+	padding-top: 40px;
+}
+section p{
+	font-size: 25px;
+	color: red;
+}

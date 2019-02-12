@@ -1,0 +1,21 @@
+<div class="Title">
+    De Activate Account
+</div>
+
+<div class="Div2">
+	
+	{% csrf_token %}
+    <div class="Button_Div" id='DeactivateDiv'>
+    	{% csrf_token %}
+    	<p>This Will Deactivate Your Account Untill You Log in Again The Next Time</p>
+        <input type="submit" value="De-Activate Acount" name='DeactivateSubmit'
+        		id="DeactivateSubmit">
+    </div>
+
+    <div class="Button_Div" id='DeleteDiv'>
+    	{% csrf_token %}
+    	<p>This Will Delete Your Account</p>
+        <input type="submit" value="Delete Acount" name='DeleteSubmit'id="DeleteSubmit">
+    </div>
+
+</div>

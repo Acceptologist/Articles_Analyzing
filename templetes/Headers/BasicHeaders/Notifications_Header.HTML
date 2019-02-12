@@ -1,0 +1,20 @@
+{% load static %}
+{% load NotificationsFilters %}
+
+<div id="Notifications">
+
+	{% for Notification in Notifications %}
+		{% autoescape off %}
+			{{ Notification|GetNotification }}
+		{% endautoescape %}
+	{% endfor %}
+
+	{% autoescape off %}
+		{{ Notifications|CheckNotifications }}
+	{% endautoescape %}
+
+
+	<div class="SeeAll">
+		<a href="{{ init.Notifications }}">See All Notifications</a>
+	</div>
+</div>

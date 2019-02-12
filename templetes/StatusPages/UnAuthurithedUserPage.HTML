@@ -1,0 +1,17 @@
+{% extends init.Base %}
+{% load static %}
+
+
+{% block header_scripts_and_style %}
+	<link rel="stylesheet" type="text/css" 
+		href="{% static init.PagesCSS %}UnAuthurizedUser.CSS">
+{% endblock %}
+
+
+{% block section %}
+    <div class='Title'>
+		Un Authurized User
+	</div>
+
+	<P>You  Can't Enter This Page</P>
+{% endblock %}

@@ -1,0 +1,118 @@
+{% extends init.Base %}
+{% load static %}
+{% load PostFilters %}
+
+
+{% block header_scripts_and_style %}
+    <link rel="stylesheet" type="text/css"
+                href="{% static init.PagesCSS %}Article.CSS">
+
+    <script src="{% static init.CheckLenScript %}"></script>
+    <script src="{% static init.CheckinputLenScript %}"></script>
+
+    <script src="{% static init.TrigerMessageScript %}"></script>
+    <script src="{% static init.ErrorFunctionScript %}"></script>
+
+    <script src="{% static init.PagesScripts %}ArticleScript.js"></script>
+{% endblock %}
+
+
+{% block section %}
+    <div class='Title'>
+        Post
+    </div>
+
+    {% csrf_token %}
+
+    <div class="Article">
+
+        <div class="Article_Header">
+
+            <div>
+                <a href="{{ Post|GetUserLink }}">
+                    <input type="image" src="{% static Post|GetUserPicture %}">
+                </a>
+            </div>
+
+            <div>
+                <p><strong>By </strong> : {{ Post|GetUserName }}</p>
+                
+                <p><strong>Date </strong> : {{ Post|GetPostDate }}</p>
+                
+            </div>
+            
+            <p class="Article_Title">
+                <strong>Title </strong> : {{ Post|GetPostTitle }}</p>
+
+        </div>
+
+        <div class="Post">
+            {% autoescape off %}
+                <p>{{ Post|GetArticlePost }}</p>
+            {% endautoescape %}
+        </div>
+
+        <div>
+            {% autoescape off %}
+                <p>Tags : {{ Post|GetArticleTags }}</p>
+            {% endautoescape %}
+        </div>
+
+        <div class="Analyzer">
+            <p>This User Have Positive Openion in This Article</p>
+        </div>
+
+        <div class="Post_Statics">
+            
+            <input type="button" value="Like" id="Like">
+            <input type="button" value="DisLike" id="DisLike">
+
+            <span><span id="Likes">{{ Post|GetPostLikes }}</span> Likes</span>
+            <span><span id="DisLikes">{{ Post|GetPostDisLikes }}
+                                </span> DisLikes</span>
+            <span><span id="Comments">{{ Post|GetPostCommentsCount }}
+                                </span> Comments</span>
+
+        </div>
+
+        <div class="Comments_Div">
+            
+            <div class="WriteComment">
+                
+                <a href="{% if Session == 'Found' %}{{ init.User }}{{ Session_ID }}{% endif %}">
+                    <input type="image" src="{% if Session == 'Found' %}
+                                                {% static Session_Picture %}
+                                            {% else %}
+                                                {% static init.OfflineUser %}
+                                            {% endif %}">
+                </a>
+                <textarea rows="2" placeholder="Write Your Comment Here" id="Comment"
+                    oninput="CheckinputLen(this.id, Comment_Len);"></textarea>
+
+                <input type="image" src="{% static init.Send %}" id="SendComment">
+            </div>
+
+            {% autoescape off %}
+                {{ Post|GetPostComments }}
+            {% endautoescape %}
+
+        </div>
+
+    </div>
+{% endblock %}
+
+
+{% block footer_scripts %}
+    <script type="text/javascript">
+        var Token = $("input[name='csrfmiddlewaretoken']").val();
+
+        var Comment_Len = {{ init.Comment_Len }};
+
+        var isUser = {% if Session == 'Found' %} 1 {% else %} 0 {% endif %};
+
+        var MakeCommentPage = '{{ init.MakeCommentPage }}';
+        var MakeLike_DisLikePage = '{{ init.LikeDisLikePostPage }}';
+
+        var Post_id = {{ Post|GetPostid }};
+    </script>
+{% endblock %}

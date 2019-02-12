@@ -1,0 +1,69 @@
+{% extends init.Base %}
+{% load static %}
+
+
+{% block header_scripts_and_style %}
+    
+    <link rel="stylesheet" type="text/css"
+            href="{% static init.PagesCSS %}MakeArticle.CSS">
+
+    <!-- Needed Scripts -->
+    <script src="{% static init.CheckLenScript %}"></script>
+    <script src="{% static init.CheckinputLenScript %}"></script>
+    <script src="{% static init.TrigerMessageScript %}"></script>
+
+    <!-- Main Script -->
+    <script src="{% static init.PagesScripts %}MakeArticleScript.js"></script>
+{% endblock %}
+
+
+{% block section %}
+    <div class ='Title'>
+        Make Article
+    </div>
+
+    <form id='ArticleForm' method="post" enctype="multipart/form-data"
+            action="{{ init.MakeArticle }}">
+
+        {% csrf_token %}
+
+        <div>
+            <div>
+                <p>Title : </p>
+                <input type="text" name="Title" placeholder="Enter Title Here"
+                        id="Title" oninput="CheckinputLen(this.id, ArticleTitle_Len)">
+            </div>
+
+            <div>
+                <p>Tags : </p>
+                <input type="text" name="Tags" placeholder="Enter Tags"
+                        id="Tags" oninput="CheckinputLen(this.id, ArticleTags_Len)">
+            </div>
+
+            <div>
+                <textarea id="Article" placeholder="Enter Your Article Here"
+                        required name="Article"
+                        oninput="CheckinputLen(this.id, Article_Len)"></textarea>
+            </div>
+
+            <div>
+                <input type="submit" value="Post">
+            </div>
+        </div>
+    </form>
+{% endblock %}
+
+
+{% block footer_scripts %}
+    <script type="text/javascript">
+        var ArticleTitle_Len = {{ init.ArticleTitle_Len }};
+        var Article_Len = {{ init.Article_Len }};
+        var ArticleTags_Len = {{ init.ArticleTags_Len }};
+    </script>
+
+    <script type="text/javascript">
+        {% if Result == 'Done' %}
+            TriggerMessage(3000, '#53A01A', '<p>Posted</p>');
+        {% endif %}
+    </script>
+{% endblock %}

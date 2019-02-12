@@ -1,0 +1,66 @@
+{% extends init.Base %}
+{% load static %}
+{% load NotificationsFilters %}
+
+
+{% block header_scripts_and_style %}
+    <link rel="stylesheet" type="text/css"
+                    href="{% static init.PagesCSS %}MyNotifications.CSS">
+
+    <script src="{% static init.TrigerMessageScript %}"></script>
+    <script src="{% static init.ErrorFunctionScript %}"></script>
+
+    <script src="{% static init.PagesScripts %}MyNotificationsScript.js"></script>
+{% endblock %}
+
+
+{% block section %}
+    <div class ='Title'>
+        My Notifications
+    </div>
+
+    {% csrf_token %}
+
+    <div class="Notifications">
+        {% for Notification in User_Notifications %}
+            {% autoescape off %}
+                {{ Notification|GetTheWholeNotification }}
+            {% endautoescape %}
+        {% endfor %}
+        
+        <div class="Notification DidNotSeeNotification">
+            <div>
+                <a href="">
+                    <input type="image" name="" src="{% static init.OnlineUser %}">
+                </a>
+
+                <div>
+                    <p><strong>Date : </strong>654</p>
+                    <p><strong>By : </strong>Hady</p>
+                </div>
+            </div>
+
+            <div>
+                <p>This User Liked Your Post : <strong> Title Here </strong></p>
+                <a href="">The Link For Article</a>
+            </div>
+        </div>
+
+    </div>
+    {% autoescape off %}
+        {{ User_Notifications|CheckNotificationsNumber }}
+    {% endautoescape %}
+
+{% endblock %}
+
+
+{% block footer_scripts %}
+    <script type="text/javascript">
+        var Notifications_Number = {{ User_Notifications|GetNotificationsNumber }};
+
+        var Token = '&csrfmiddlewaretoken=' + 
+                        $("input[name='csrfmiddlewaretoken']").val();
+
+        var GetNotificationsPage = '{{ init.GetNotificationsPage }}';
+    </script>
+{% endblock %}

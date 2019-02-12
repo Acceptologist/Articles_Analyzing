@@ -1,0 +1,19 @@
+info Showed in WebSite
+
+1 - Classes Error
+
+/*
+    JSON Errors
+        1   =>  JSON Error  =>  Failed To Convert To JSON
+
+    Ajax Errors
+        2   =>  Ajax Error  =>  Failed To Make Ajax Call To The Page
+*/
+
+
+2 - Errors in Pages
+
+/*
+    in SignUP Page ( The API )
+        1   ,   2
+*/

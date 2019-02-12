@@ -1,0 +1,70 @@
+{% extends init.Base %}
+{% load static %}
+
+
+{% block header_scripts_and_style %}
+    
+    <link rel="stylesheet" type="text/css"
+            href="{% static init.PagesCSS %}MakeArticle.CSS">
+
+    <!-- Needed Scripts -->
+    <script src="{% static init.CheckLenScript %}"></script>
+    <script src="{% static init.CheckinputLenScript %}"></script>
+    <script src="{% static init.TrigerMessageScript %}"></script>
+
+    <!-- Main Script -->
+    <script src="{% static init.PagesScripts %}MakeArticleScript.js"></script>
+{% endblock %}
+
+
+{% block section %}
+    <div class ='Title'>
+        Edit Article
+    </div>
+
+    <form id='ArticleForm' method="post" enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        <div>
+            <div>
+                <p>Title : </p>
+                <input type="text" name="Title" placeholder="Enter Title Here"
+                        value="{{ Article_Title }}" 
+                        id="Title" oninput="CheckinputLen(this.id, ArticleTitle_Len)">
+            </div>
+
+            <div>
+                <p>Tags : </p>
+                <input type="text" name="Tags" placeholder="Enter Tags"
+                        value="{{ Tags }}" 
+                        id="Tags" oninput="CheckinputLen(this.id, ArticleTags_Len)">
+            </div>
+
+            <div>
+                <textarea id="Article" placeholder="Enter Your Article Here" required
+                     name="Article" oninput="CheckinputLen(this.id, Article_Len)"
+                                    >{{ Post }}</textarea>
+            </div>
+
+            <div>
+                <input type="submit" value="Post">
+            </div>
+        </div>
+    </form>
+{% endblock %}
+
+
+{% block footer_scripts %}
+    <script type="text/javascript">
+        var ArticleTitle_Len = {{ init.ArticleTitle_Len }};
+        var ArticleTags_Len = {{ init.ArticleTags_Len }};
+        var Article_Len = {{ init.Article_Len }};
+    </script>
+
+    <script type="text/javascript">
+        {% if Result == 'Edited' %}
+            TriggerMessage(3000, '#53A01A', '<p>Edited</p>');
+        {% endif %}
+    </script>
+{% endblock %}

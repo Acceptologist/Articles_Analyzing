@@ -1,0 +1,64 @@
+{% extends init.Base %}
+{% load static %}
+{% load ArticlesFilters %}
+{% load UserFilters %}
+
+
+{% block header_scripts_and_style %}
+    <link rel="stylesheet" type="text/css"
+                href="{% static init.PagesCSS %}MyProfile.CSS">
+
+    <script src="{% static init.TrigerMessageScript %}"></script>
+    <script src="{% static init.ErrorFunctionScript %}"></script>
+
+    <script src="{% static init.PagesScripts %}ArticlesScript.js"></script>
+    <script src="{% static init.PagesScripts %}MyProfileScript.js"></script>
+{% endblock %}
+
+
+{% block section %}
+
+    {% csrf_token %}
+
+    <div class="info">
+
+        <input type="image" src="{% static Session_Picture %}">
+        <p><span>ID</span> : {{ Session_ID }}</p>
+        <p><span>Name</span> : {{ Session_Name }}</p>
+        <p><span>Email</span> : {{ Session_Email }}</p>
+        <p><span>Sign UP Date</span> : {{ Session_Date }}</p>
+        <p><span>Likes : </span> {{ Session_Email|GetLikes }}</p>
+        <p><span>DisLikes : </span> {{ Session_Email|GetDisLikes }}</p>
+        <p><span>Comments : </span> {{ Session_Email|GetComments }}</p>
+        <p><span>Number Of Posts</span> =
+            <span class="Number">{{ Session_Articles_Number }}</span></p>
+
+    </div>
+
+    <div class="Posts">
+        
+        {% for Article in Articles %}
+            {% autoescape off %}
+                {{ Article|GetPost:"1" }}
+            {% endautoescape %}
+        {% endfor %}
+
+        {% autoescape off %}
+            {{ Articles|CheckPostsNumber }}
+        {% endautoescape %}
+    </div>
+
+{% endblock %}
+
+
+{% block footer_scripts %}
+    <script type="text/javascript">
+        var GetPostsPage = '{{ init.GetPosts }}'
+        var DeletePostPage = '{{ init.DeletePostPage }}';
+        var EditPostPage = '{{ init.EditArticle }}';
+
+        var Posts_Number = 5;
+        
+        var Token = $("input[name='csrfmiddlewaretoken']").val();
+    </script>
+{% endblock %}

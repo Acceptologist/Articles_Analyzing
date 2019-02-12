@@ -1,0 +1,46 @@
+{% extends init.Base %}
+{% load static %}
+{% load SuccessArticleFilters %}
+
+
+{% block header_scripts_and_style %}
+    <link rel="stylesheet" type="text/css"
+            href="{% static init.PagesCSS %}MakeArticle.CSS">
+
+    <!-- Needed Scripts -->
+    <script src="{% static init.TrigerMessageScript %}"></script>
+
+    <!-- Main Script -->
+    <script src="{% static init.PagesScripts %}MakeArticleScript.js"></script>
+{% endblock %}
+
+
+{% block section %}
+    <div class ='Title'>
+        {{ Title }}
+    </div>
+
+    <div id="Link">
+        <a href="{{ Result|GetLink }}">Link Of Post</a>
+
+        <input type="button" id="Make" value="{{ Result|GetButtonValue }}">
+    </div>
+{% endblock %}
+
+
+{% block footer_scripts %}
+    <script type="text/javascript">
+        {% autoescape off %}
+            {{ Result|GetResult }}
+        {% endautoescape %}
+    </script>
+
+    <script type="text/javascript">
+        var Page = '{{ Result|GetPage }}';
+        $(document).ready(function(){
+            $('#Make').click(function(){
+                location.href = Page;
+            })
+        })
+    </script>
+{% endblock %}

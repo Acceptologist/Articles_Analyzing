@@ -1,0 +1,88 @@
+section{
+    text-align: left;
+}
+.Show_More_Div, .Articles{
+	text-align: center;
+}
+.Articles{
+    padding-left: 5%;
+	width: 60%
+}
+.Article{
+	text-align: left;
+	margin-top: 50px;
+	background-color: #FFF;
+	border-radius: 5px;
+}
+.Article div, .Article_Header{
+	margin: 0px;
+	padding: 0px;
+}
+.Article p{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 15px;
+    white-space:nowrap;
+}
+.Article_Link{
+    border-bottom-width: 1px;
+    border-bottom-color: #454545;
+    border-bottom-style: solid;
+}
+.Show_More_Div{
+	margin-top: 60px;
+}
+.Show_More_Div input{
+	width: 50%;
+}
+.Article_Header{
+    font-size: 17px;
+}
+.Article_Header div{
+    display: inline-block;
+}
+.Article_Header div input{
+    vertical-align: bottom;
+}
+.Article_Header div input{
+    width: 80px;
+    height: 80px;
+}
+.Article_Statics p{
+    display: inline-block;
+    font-size: 18px;
+    margin-right: 20px;
+}
+.Article_Tags a{
+    display: inline-block;
+    text-decoration: underline;
+}
+.Article_Title{
+	font-size: 20px !important;
+}
+.Options{
+    text-align: right;
+    float: right;
+}
+.Options div{
+    display: none;
+    float: left;
+    position: relative;
+    background-color: #C5CAC3;
+    border-radius: 5px;
+    border-color: #454545;
+    border-width: 1px;
+}
+.Options input[type='image']{
+    width: 20px;
+    height: 20px;
+    padding: 0px;
+    margin: 0px;
+}
+.Options div a{
+    padding: 12px 16px;
+    text-align: left;
+}
+.Delete:hover{
+    color: red !important;
+}
